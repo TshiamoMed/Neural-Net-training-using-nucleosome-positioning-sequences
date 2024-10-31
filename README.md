@@ -23,17 +23,17 @@ Python 3.12.0
 GPU support recommended
 
 Required Python Packages
-trim_galore/0.4.1
-Samtools
-bowtie2/2.5.3
-numpy
-pandas
-scikit-learn
-tensorflow/2.9.2
-keras
-matplotlib
-seaborn
-biopython
+trim_galore/0.4.1,
+Samtools,
+bowtie2/2.5.3,
+numpy,
+pandas,
+scikit-learn,
+tensorflow/2.9.2,
+keras,
+matplotlib,
+seaborn,
+biopython.
 
 Project Pipeline
 1. Data Preprocessing
