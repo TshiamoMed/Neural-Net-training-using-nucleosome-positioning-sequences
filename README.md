@@ -12,7 +12,7 @@ Research Motivation:
 Nucleosome positioning plays a crucial role in gene regulation and chromatin structure. Despite advances in high-throughput sequencing, predicting nucleosome occupancy remains challenging, especially across diverse organisms. This project demonstrates the potential of deep learning in capturing complex nucleosome positioning patterns.
 
 
-Key Features:
+# Key Features:
 
 Comparative analysis of nucleosome positioning in S. cerevisiae and T. brucei
 
@@ -26,7 +26,7 @@ Comprehensive performance evaluation
 
 
 
-Prerequisites:
+# Prerequisites:
 System Requirements:
 
 High-performance computing cluster
@@ -41,7 +41,7 @@ GPU support recommended
 
 
 
-Required Python Packages:
+# Required Python Packages:
 
 trim_galore/0.4.1,
 Samtools,
@@ -56,7 +56,7 @@ seaborn,
 biopython.
 
 
-Project Pipeline:
+# Project Pipeline:
 
 1. Data Preprocessing:
    
@@ -142,21 +142,21 @@ This scripts compresses the extracted sequences into 4 bits one hot encoding.
 *Visualization of prediction accuracy
 
 
-Datasets:
+# Datasets:
 
 S. cerevisiae: GEO NCBI - GSE67148, 
 T. brucei: GEO NCBI - GSE90593
 
-Reference Genomes:
+# Reference Genomes:
 
 S. cerevisiae: S288C_reference_sequence_R64-4-1_20230830.fsa. 
 T. brucei: TriTrypDB-68_TbruceiLister427_2018_Genome.fasta
 
-Key Findings:
+# Key Findings:
 
 Higher prediction accuracy in quiescent cells. Challenges with data imbalance. Unique challenges in T. brucei nucleosome positioning
 
-Limitations and Future Work:
+# Limitations and Future Work:
 
 Improve handling of high nucleosome count regions. Incorporate additional genomic features. Develop advanced data augmentation techniques
 
