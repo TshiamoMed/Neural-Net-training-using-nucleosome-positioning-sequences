@@ -92,7 +92,9 @@ Script: trim.pbs
 
 
 4. Binary encoding:
-   
+
+script: one_hot_encode.py
+
 This scripts compresses the extracted sequences into 4 bits one hot encoding.
 
 
