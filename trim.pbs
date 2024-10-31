@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#PBS -N TrimGalore_Only
+#PBS -l walltime=24:00:00
+#PBS -l ncpus=16
+#PBS -l mem=100GB
+#PBS -e trim_galore.err
+#PBS -o trim_galore.out
+#PBS -M 25506218@sun.ac.za
+#PBS -m abe
+#PBS -q bix
+
+# Navigate to the job's working directory
+cd $PBS_O_WORKDIR
+
+# Load necessary modules
+module load app/bowtie2/2.5.3
+module load app/TrimGalore!/0.4.1
+
+# Define directories
+DATA_DIR=~/Project/trypano/yeast
+TRIMMED_DIR=~/Project/trypano/yeast/trimmed_reads
+
+# Process paired-end FASTQ files
+for FORWARD_READ in $DATA_DIR/*_1.fastq; do
+  # Generate the corresponding reverse read file name
+  REVERSE_READ="${FORWARD_READ/_1.fastq/_2.fastq}"
+
+  # Check if the corresponding reverse read file exists
+  if [[ -f $REVERSE_READ ]]; then
+    echo "Processing $FORWARD_READ and $REVERSE_READ"
+
+    # Run Trim Galore
+    trim_galore --paired \
+                --quality 30 \
+                --phred33 \
+                --length 50 \
+                --stringency 1 \
+                --output_dir $TRIMMED_DIR \
+                $FORWARD_READ $REVERSE_READ
+  else
+    echo "Warning: No paired file found for $FORWARD_READ"
+  fi
+done
+
+
+
