@@ -1,0 +1,55 @@
+#!/bin/bash
+
+PBS -N YeastAlignment
+PBS -l walltime=48:00:00
+PBS -l ncpus=16
+PBS -l mem=128GB
+PBS -e yeast_alignment.err
+PBS -o yeast_alignment.out
+PBS -M 25506218@sun.ac.za
+PBS -m abe
+PBS -q bix
+
+# Navigate to the job's working directory
+cd "$PBS_O_WORKDIR"
+
+# Load necessary modules
+module load app/bowtie2
+module load app/samtools
+module load app/python/3.12.0
+
+# Define paths and variables
+#in this script. varianles and paths were changed to fit each sample file present for both T.Brucei and S.Cerevisiae and the script was ran each time.
+REFERENCE_SEQUENCE="S288C_reference_sequence_R64-4-1_20230830.fsa"
+REFERENCE_PREFIX="~/Project/yeast/trimmed_reads/S288C_reference_index"
+FORWARD_READ="SRR1924279_1_val_1.fq"
+REVERSE_READ="SRR1924279_2_val_2.fq"
+SAMPLE_NAME="SRR1924279"
+ALIGN_DIR="~/Project/trypano/yeast/aligned_reads_${SAMPLE_NAME}"
+SAM_FILE="${ALIGN_DIR}/${SAMPLE_NAME}.sam"
+BAM_FILE="${ALIGN_DIR}/${SAMPLE_NAME}_aligned.bam"
+SORTED_BAM_FILE="${ALIGN_DIR}/${SAMPLE_NAME}_aligned_sorted.bam"
+
+# Make output directory for the sample
+mkdir -p "$ALIGN_DIR"
+
+# Build the reference index 
+bowtie2-build "$REFERENCE_SEQUENCE" "$REFERENCE_PREFIX"
+
+# Run Bowtie2 for alignment
+bowtie2 -x "$REFERENCE_PREFIX" -1 "$FORWARD_READ" -2 "$REVERSE_READ" -S "$SAM_FILE"
+
+# Convert SAM to BAM
+samtools view -bS "$SAM_FILE" > "$BAM_FILE"
+
+# Sort BAM file
+samtools sort -o "$SORTED_BAM_FILE" "$BAM_FILE"
+
+# Index BAM file
+samtools index "$SORTED_BAM_FILE"
+
+# Clean up intermediate files
+rm "$SAM_FILE" "$BAM_FILE"
+
+echo "Alignment completed for $SAMPLE_NAME. Output files are located in $ALIGN_DIR."
+
