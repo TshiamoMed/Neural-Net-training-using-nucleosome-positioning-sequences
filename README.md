@@ -60,7 +60,7 @@ biopython.
 
 1. Data Preprocessing:
    
-Script: trim.pbs
+shell Script: trim.pbs
 
 *Uses Trim Galore for quality control,
 
