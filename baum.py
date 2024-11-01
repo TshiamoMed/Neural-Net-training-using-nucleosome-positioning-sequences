@@ -17,6 +17,7 @@ n_sequences, n_bp, n_features = onehot_encoded_sequences.shape
 sequences_for_hmm = onehot_encoded_sequences.reshape(n_sequences, n_bp * n_features)
 
 # Step 4: Define and train the HMM using Baum-Welch
+# Two hidden states are defined: nucleosome-enriched and nucleosome-depleted
 n_hidden_states = 2  
 
 # Initialize the HMM
@@ -24,6 +25,7 @@ hmm_model = hmm.GaussianHMM(n_components=n_hidden_states, covariance_type="diag"
 
 # Fit the HMM to the sequence data (Baum-Welch algorithm)
 # Note: We are using the sequences_for_hmm which is 2D
+#using the baum-welch algorithm, the HMM learns high counts and depleted counts. 
 hmm_model.fit(sequences_for_hmm)
 
 # Step 5: Use the trained HMM to predict hidden states for each sequence
@@ -39,6 +41,7 @@ hmm_model_file = os.path.join(output_dir, 'hmm_model.pkl')
 joblib.dump(hmm_model, hmm_model_file)
 
 # Step 7: Combine hidden states with one-hot encoded sequences for neural network training
+# Combined feature matrix size: (n_sequences, 161*4 + 1) = (n_sequences, 645)
 combined_features = np.concatenate([sequences_for_hmm, hidden_states.reshape(-1, 1)], axis=1)
 
 # Save the combined feature set for training neural network
