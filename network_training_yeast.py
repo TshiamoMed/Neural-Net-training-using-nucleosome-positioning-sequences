@@ -3,7 +3,7 @@ import tensorflow as tf
 from tensorflow.keras import layers, models, callbacks, regularizers
 import os
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import mean_squared_error, r2_score, f1_score, accuracy_score, roc_auc_score, roc_curve
+from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import KFold
 from scipy import stats
 import matplotlib.pyplot as plt
