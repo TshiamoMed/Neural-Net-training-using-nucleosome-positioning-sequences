@@ -160,8 +160,9 @@ S. cerevisiae: GEO NCBI - GSE67148,
 T. brucei: GEO NCBI - GSE90593
 
 # Processed Datasets
-* under the T_brucei_small_dataset
-* under the yeast_small_dasaset
+The small test dataset after downstream processing: 
+* under the T_brucei_test_dataset folder 
+* under the yeast_test_dasaset folder 
 
 # Reference Genomes:
 
