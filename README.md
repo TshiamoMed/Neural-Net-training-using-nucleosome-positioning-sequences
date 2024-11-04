@@ -4,7 +4,7 @@ Training a neural network using nucleosome positioning sequences and applying to
 
 Overview:
 
-This research project aims to develop a neural network-based approach for predicting nucleosome positioning in two distinct eukaryotic organisms: Saccharomyces cerevisiae (budding yeast) and Trypanosoma brucei (protozoan parasite). The study leverages MNase-Seq data to explore nucleosome distribution patterns across different genomic architectures.
+This research project aims to develop a neural network-based approach for predicting nucleosome positioning in two distinct eukaryotic organisms: Saccharomyces cerevisiae (yeast) and Trypanosoma brucei (protozoan parasite). The study uses MNase-Seq data to explore nucleosome distribution patterns across different genomic architectures.
 
 
 Research Motivation:
@@ -54,6 +54,15 @@ keras,
 matplotlib,
 seaborn,
 biopython.
+
+# Getting started 
+
+```
+$ module load python/3.12.0
+$ module load app/samtools
+$ module load app/bowtie2
+$ module load app/tensorflow/2.9.2
+```
 
 
 # Project Pipeline:
@@ -149,6 +158,10 @@ This scripts compresses the extracted sequences into 4 bits one hot encoding.
 
 S. cerevisiae: GEO NCBI - GSE67148, 
 T. brucei: GEO NCBI - GSE90593
+
+# Processed Datasets
+* under the T_brucei_small_dataset
+* under the yeast_small_dasaset
 
 # Reference Genomes:
 
