@@ -136,6 +136,7 @@ This scripts compresses the extracted sequences into 4 bits one hot encoding.
 8. Model Evaluation:
     
 *Script: yeast_model_evaluation.py and T_brucei_model_evaluation.py
+*using the processed datasets in the foulders
 
 *Performance metrics calculation
 
@@ -144,7 +145,7 @@ This scripts compresses the extracted sequences into 4 bits one hot encoding.
 *Visualization of prediction accuracy
 
 
-# Datasets:
+# Raw Datasets:
 
 S. cerevisiae: GEO NCBI - GSE67148, 
 T. brucei: GEO NCBI - GSE90593
